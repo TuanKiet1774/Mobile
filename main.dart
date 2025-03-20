@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:tuankiet_64131060/Layput/gridview_example.dart';
 import 'package:tuankiet_64131060/Layput/list_view_example.dart';
 import 'package:tuankiet_64131060/Profile/pagehomeapp.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: 'https://qvqpbpcnmjruzlmudzpe.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2cXBicGNubWpydXpsbXVkenBlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIxODEyNzUsImV4cCI6MjA1Nzc1NzI3NX0.rG1hmzLhhLRSAFn-VJQx2kE82XpSEcr8Llwo0PkKTM0',
+  );
   runApp(const MyApp());
 }
 //Stateless: Widget không trạng thái
@@ -14,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) { //Mỗi Widget có một phương thức đặc biệt build
     return MaterialApp( //trả về 1 widget
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange,),

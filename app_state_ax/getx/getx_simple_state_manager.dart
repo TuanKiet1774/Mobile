@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tuankiet_64131060/app_state_ax/getx/pagenext.dart';
 
 class ControllerSimpleState extends GetxController{
   int counter = 0;
@@ -22,6 +23,36 @@ class ControllerSimpleState extends GetxController{
     //update(["01","02"]); //Cập nhật hết
   }
 }
+
+class BindingController extends Bindings{
+
+  @override
+  void dependencies() {
+    Get.lazyPut(() => ControllerSimpleState());
+  }
+}
+
+class BindingTempoController extends Bindings{
+
+  @override
+  void dependencies() {
+    Get.create(() => ControllerSimpleState(), permanent: false);
+  }
+}
+
+class GetXApp extends StatelessWidget {
+  const GetXApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      title: "GetXApp",
+      initialBinding: BindingController(),
+      home: PageSimpleState(),
+    );
+  }
+}
+
 
 class PageSimpleState extends StatelessWidget {
   PageSimpleState({super.key});
@@ -72,8 +103,9 @@ class PageSimpleState extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
+                Get.to(PageNext(),binding: BindingTempoController());
               },
-              child: Text("Quay về"),
+              child: Text("Tràn tiếp theo"),
             ),
           ],
         ),
