@@ -27,9 +27,9 @@ class ControllerFruit extends GetxController{
     //Đọc dữ liệu từ supabase
     // _docDL();
     //Đọc ữ liệu từ supabase cập nhật realtime
-    _maps = await FruitSnapshot.getMapFruit();
+    //_maps = await FruitSnapshot.getMapFruit();
     update(["Fruits"]);
-    FruitSnapshot.listenFruitChange(_maps, updateUI: () => this.update(["Fruits"]),);
+    //FruitSnapshot.listenFruitChange(_maps, updateUI: () => this.update(["Fruits"]),);
   }
 
   // _docDL() async{

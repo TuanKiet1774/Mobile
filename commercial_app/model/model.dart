@@ -1,5 +1,6 @@
 //Lớp model
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:tuankiet_64131060/commercial_app/supabase_helper.dart';
 
 class Fruit{
   int id;
@@ -39,64 +40,108 @@ class Fruit{
 }
 //Đối với mỗi lớp model (CDSL) thì phải có lớp truy cập dữ liệu
 //Lớp truy cập dư liệu
-class FruitSnapshot{
+class FruitSnapshot {
+  Fruit fruit;
 
-  static Future <List<Fruit>> getFruits()async{
+  FruitSnapshot({required this.fruit});
+
+  Future<dynamic> update(Fruit newFruit) async {
+    final supabase = Supabase.instance.client;
+    var data = await supabase.from("Fruit").update(newFruit.toJson()).eq(
+        "id", fruit.id);
+    return data;
+  }
+
+  Future<void> delete() async {
+    final supabase = Supabase.instance.client;
+    await supabase.from("Fruit").delete().eq("id", fruit.id);
+    await removeImage(bucket: "images", path: "images/fruit_${fruit.id}");
+    return;
+  }
+
+  static Future<dynamic> insert(Fruit newFruit) async {
+    final supabase = Supabase.instance.client;
+    var data = await supabase.from('Fruit').insert(newFruit.toJson());
+    return data;
+  }
+
+  static Future <List<Fruit>> getFruits() async {
     final supabase = Supabase.instance.client;
     List <Fruit> fruits = [];
     final data = await supabase.from('Fruit').select();
     fruits = data.map((e) => Fruit.fromJson(e),).toList();
     return fruits;
   }
+
   // static List<Fruit> getAll(){
   //   return data;
   // }
-  static Future<Map<int, Fruit>> getMapFruit() async{
-    final supabase = Supabase.instance.client;
-    final data = await supabase.from("Fruit").select();
-    var iterable = data.map((e) => Fruit.fromJson(e),);
-    Map<int, Fruit> _maps = Map.fromIterable(iterable, key: (fruit) =>
-    fruit.id, value: (fruit) => fruit,);
-    return _maps;
+
+  static Stream <List<Fruit>> getFruitStream() {
+    return getDataStream<Fruit>(
+      table: "Fruit",
+      ids: ["id"],
+      fromJson: (json) => Fruit.fromJson(json),
+    );
   }
-  static listenFruitChange(Map<int, Fruit> maps, {Function()? updateUI} ){
-    final supabase = Supabase.instance.client;
-    supabase
-        .channel('public:Fruit') //cái này là ID channel, ghi gì cũng đc
-        .onPostgresChanges(
-        event: PostgresChangeEvent.all, //lắng nghe tất cả
-        schema: 'public',
-        table: 'Fruit',
-        callback: (payload) {
-          print('Change received: ${payload.toString()}');
-          switch(payload.eventType){
-            case PostgresChangeEvent.update :{
-              Fruit f = Fruit.fromJson(payload.newRecord);
-              maps[f.id] = f;
-              updateUI?.call();
-              break;
-            }
-          // case "UPDATE":{
-          //   Fruit f = Fruit.fromJson(payload.newRecord);
-          //   maps[f.id] = f;
-          //   updateUI?.call();
-          // }
-            case PostgresChangeEvent.insert :{
-              Fruit f = Fruit.fromJson(payload.newRecord);
-              maps[f.id] = f;
-              updateUI?.call();
-              break;
-            }
-            case PostgresChangeEvent.delete :{
-              maps.remove(payload.oldRecord["id"]);
-              updateUI?.call();
-              break;
-            }
-            default: {}
-          }
-        })
-        .subscribe();
+
+  static listenFruitChange(Map<int, Fruit> maps, {Function()? updateUI}) {
+    listenDataChange(maps,
+      table: "Fruit",
+      schema: "public",
+      channel: "public:Fruit",
+      fromJson: (json) => Fruit.fromJson(json),
+      getID: (t) => t.id,
+      updateUI: updateUI,
+    );
   }
+
+  // static Future<Map<int, Fruit>> getMapFruit() async{
+  //   final supabase = Supabase.instance.client;
+  //   final data = await supabase.from("Fruit").select();
+  //   var iterable = data.map((e) => Fruit.fromJson(e),);
+  //   Map<int, Fruit> _maps = Map.fromIterable(iterable, key: (fruit) =>
+  //   fruit.id, value: (fruit) => fruit,);
+  //   return _maps;
+  // }
+  // static listenFruitChange(Map<int, Fruit> maps, {Function()? updateUI} ){
+  //   final supabase = Supabase.instance.client;
+  //   supabase
+  //       .channel('public:Fruit') //cái này là ID channel, ghi gì cũng đc
+  //       .onPostgresChanges(
+  //       event: PostgresChangeEvent.all, //lắng nghe tất cả
+  //       schema: 'public',
+  //       table: 'Fruit',
+  //       callback: (payload) {
+  //         print('Change received: ${payload.toString()}');
+  //         switch(payload.eventType){
+  //           case PostgresChangeEvent.update :{
+  //             Fruit f = Fruit.fromJson(payload.newRecord);
+  //             maps[f.id] = f;
+  //             updateUI?.call();
+  //             break;
+  //           }
+  //         // case "UPDATE":{
+  //         //   Fruit f = Fruit.fromJson(payload.newRecord);
+  //         //   maps[f.id] = f;
+  //         //   updateUI?.call();
+  //         // }
+  //           case PostgresChangeEvent.insert :{
+  //             Fruit f = Fruit.fromJson(payload.newRecord);
+  //             maps[f.id] = f;
+  //             updateUI?.call();
+  //             break;
+  //           }
+  //           case PostgresChangeEvent.delete :{
+  //             maps.remove(payload.oldRecord["id"]);
+  //             updateUI?.call();
+  //             break;
+  //           }
+  //           default: {}
+  //         }
+  //       })
+  //       .subscribe();
+  // }
 }
 
 
