@@ -20,13 +20,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) { //Mỗi Widget có một phương thức đặc biệt build
     return MaterialApp( //trả về 1 widget
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, //Mất chữ debug
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange,),
         useMaterial3: true,
       ),
-      //home: MyHomePageApp(),
       home: MyHomePageApp(), //Trang dao diện
     );
   }

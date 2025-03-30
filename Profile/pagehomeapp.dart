@@ -8,6 +8,8 @@ import 'package:tuankiet_64131060/app_state_ax/getx/getx_simple_state_manager.da
 import 'package:tuankiet_64131060/commercial_app/app_fruit_store.dart';
 import 'package:tuankiet_64131060/commercial_app/page_fruit_stream.dart';
 import 'package:tuankiet_64131060/json_list/page_album.dart';
+import 'package:tuankiet_64131060/ontap/student.dart';
+import 'package:tuankiet_64131060/rss/pages/page_rss.dart';
 
 import '../main.dart';
 
@@ -36,6 +38,8 @@ class MyHomePageApp extends StatelessWidget {
               buildButton(context,title: "Detial Product", destination: PageChiTiet()),
               buildButton(context,title: "Demo", destination: MyHomePage(title: '',)),
               buildButton(context,title: "Page Fruit Stream", destination: PageFruitStream()),
+              buildButton(context,title: "Page RSS", destination: PageRss()),
+              buildButton(context,title: "Page Student", destination: PageStudent()),
             ],
           ),
         ),
