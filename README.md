@@ -9,3 +9,5 @@ Các thư viện hỗ trợ: https://pub.dev/
 Supabase project: https://supabase.com/dashboard/projects
 
 Supabase DOCS: https://supabase.com/docs/reference/dart/start
+
+Firebase Console: https://console.firebase.google.com/u/0/
