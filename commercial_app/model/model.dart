@@ -1,6 +1,6 @@
 //Lớp model
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tuankiet_64131060/commercial_app/supabase_helper.dart';
+import 'package:tuankiet_64131060/commercial_app/helper/supabase_helper.dart';
 
 class Fruit{
   int id;
@@ -52,10 +52,10 @@ class FruitSnapshot {
     return data;
   }
 
-  Future<void> delete() async {
-    final supabase = Supabase.instance.client;
-    await supabase.from("Fruit").delete().eq("id", fruit.id);
-    await removeImage(bucket: "images", path: "images/fruit_${fruit.id}");
+  static Future<void> delete(int id) async {
+    //final supabase = Supabase.instance.client;
+    await supabase.from("Fruit").delete().eq('id',id);
+    await removeImage(bucket: "images", path: "images/fruit_${id}.jpg");
     return;
   }
 

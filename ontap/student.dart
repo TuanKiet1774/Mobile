@@ -102,7 +102,9 @@ class _PageStudentState extends State<PageStudent> {
                             value: "Nam",
                             groupValue: sc.gt.value,
                             onChanged: (value) {
-                              sc.changed(value!);
+                              if(value != null){
+                                sc.changed(value);
+                              };
                             },
                           )
                       ),
@@ -112,7 +114,9 @@ class _PageStudentState extends State<PageStudent> {
                             value: "Nữ",
                             groupValue: sc.gt.value,
                             onChanged: (value) {
-                              sc.changed(value!);
+                              if(value != null){
+                                sc.changed(value);
+                              };
                             },
                           )
                       )

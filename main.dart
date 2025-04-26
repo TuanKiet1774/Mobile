@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tuankiet_64131060/Layput/gridview_example.dart';
-import 'package:tuankiet_64131060/Layput/list_view_example.dart';
+import 'package:tuankiet_64131060/layout/gridview_example.dart';
+import 'package:tuankiet_64131060/layout/list_view_example.dart';
 import 'package:tuankiet_64131060/Profile/pagehomeapp.dart';
 
 void main() async{

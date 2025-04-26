@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:tuankiet_64131060/Layput/chitiet_sp.dart';
-import 'package:tuankiet_64131060/Layput/gridview_example.dart';
-import 'package:tuankiet_64131060/Layput/list_view_example.dart';
+import 'package:tuankiet_64131060/layout/chitiet_sp.dart';
+import 'package:tuankiet_64131060/layout/gridview_example.dart';
+import 'package:tuankiet_64131060/layout/list_view_example.dart';
 import 'package:tuankiet_64131060/Profile/page_myprofile.dart';
 import 'package:tuankiet_64131060/app_state_ax/getx/getx_ex.dart';
 import 'package:tuankiet_64131060/app_state_ax/getx/getx_simple_state_manager.dart';
 import 'package:tuankiet_64131060/commercial_app/app_fruit_store.dart';
 import 'package:tuankiet_64131060/commercial_app/page_fruit_stream.dart';
 import 'package:tuankiet_64131060/json_list/page_album.dart';
+import 'package:tuankiet_64131060/local_storage/page_get_storage.dart';
 import 'package:tuankiet_64131060/ontap/student.dart';
+import 'package:tuankiet_64131060/permission/page_permission.dart';
+import 'package:tuankiet_64131060/phone/call_phone.dart';
+import 'package:tuankiet_64131060/preview/commercial_app%20(1)/admin_pages/fruits_page_admin.dart';
 import 'package:tuankiet_64131060/rss/pages/page_rss.dart';
 
+import '../commercial_app/admin_page/fruits_page_admin.dart';
 import '../main.dart';
 
 class MyHomePageApp extends StatelessWidget {
@@ -38,8 +43,13 @@ class MyHomePageApp extends StatelessWidget {
               buildButton(context,title: "Detial Product", destination: PageChiTiet()),
               buildButton(context,title: "Demo", destination: MyHomePage(title: '',)),
               buildButton(context,title: "Page Fruit Stream", destination: PageFruitStream()),
+              buildButton(context,title: "Page Fruit Admin", destination: PageFruitsAdmin()),
               buildButton(context,title: "Page RSS", destination: PageRss()),
               buildButton(context,title: "Page Student", destination: PageStudent()),
+              buildButton(context,title: "Call Phone", destination: CallPhone()),
+              buildButton(context,title: "Request Permission", destination: PageRequestPermission()),
+              buildButton(context,title: "Get Storage", destination: PageGetStorage()),
+              buildButton(context,title: "Admin Fruit", destination: Page_Fruits_Admin()),
             ],
           ),
         ),
