@@ -50,6 +50,7 @@ class ControllerFruit extends GetxController{
   }
 }
 
+
 //Mỗi lớp phỉa có Binding
 class BindingAppFruitStore extends Bindings{
 

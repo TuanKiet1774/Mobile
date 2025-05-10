@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:tuankiet_64131060/commercial_app/model/model.dart';
 import 'dart:math';
 import 'package:badges/badges.dart' as badges;
+import 'package:tuankiet_64131060/commercial_app/page_auth_user.dart';
 import 'controller/controller_fruit.dart';
 
 
@@ -80,15 +81,22 @@ class PageChitietFruit extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          ControllerFruit.get().themMHGH(fruit);
+        onPressed: () async {
+          if(response?.session != null && response?.user != null){
+            ControllerFruit.get().themMHGH(fruit);
+          }
+          else {
+            await Navigator.of(context).push(MaterialPageRoute(builder: (context) => PageAuthUser(),));
+            ControllerFruit.get().auth();
+          }
         },
         child: Icon(Icons.add_shopping_cart),
-    ),
+     ),
     );
   }
 }
 
 double getRating(){
-  return Random().nextInt(201)/100 + 3;
+  // return Random().nextInt(201)/100 + 3;
+  return 5.toDouble();
 }

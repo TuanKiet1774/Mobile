@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:tuankiet_64131060/commercial_app/admin_page/Fruits_add_page.dart';
+import 'package:tuankiet_64131060/commercial_app/admin_page/Fruits_update_page.dart';
 import 'package:tuankiet_64131060/commercial_app/helper/dialogs.dart';
 import 'package:tuankiet_64131060/commercial_app/model/model.dart';
+import 'package:tuankiet_64131060/review/fruits_page_update.dart';
 import 'package:tuankiet_64131060/widgets/async_widget.dart';
 
 class Page_Fruits_Admin extends StatelessWidget {
@@ -47,7 +49,10 @@ class Page_Fruits_Admin extends StatelessWidget {
                           // An action can be bigger than the others.
                           flex: 3,
                           onPressed: (context) {
-
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  Page_Update_Fruit(fruit: fruit),
+                            ));
                           },
                           backgroundColor: Colors.blue,
                           foregroundColor: Colors.white,

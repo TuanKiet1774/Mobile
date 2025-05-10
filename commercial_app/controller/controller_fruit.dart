@@ -40,6 +40,10 @@ class ControllerFruit extends GetxController{
     gh.add(GH_Item(fruit: f, sl: 1));
     update(["gh"]);
   }
+
+    void auth(){
+      update(["drawer_header"]);
+    }
 }
 
 //Mỗi lớp phỉa có Binding
