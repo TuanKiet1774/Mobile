@@ -17,7 +17,7 @@
 |----------------------|-----------------------------------------|------------------------------------------------------|
 | **Pub.dev**          | Kho thư viện chính cho Flutter và Dart  | [pub.dev](https://pub.dev/)                           |
 | **Supabase**          | Backend mã nguồn mở tương tự Firebase   | [supabase.com/dashboard/projects](https://supabase.com/dashboard/projects) |
-|                      | Tài liệu Supabase dành cho Dart/Flutter | [supabase.com/docs/reference/dart/start](https://supabase.com/docs/reference/dart/start) |
+| **Supabase Doc**      | Tài liệu Supabase dành cho Dart/Flutter | [supabase.com/docs/reference/dart/start](https://supabase.com/docs/reference/dart/start) |
 | **Firebase Console**  | Nền tảng Backend phổ biến cho ứng dụng di động | [console.firebase.google.com](https://console.firebase.google.com/u/0/) |
 
 ---
