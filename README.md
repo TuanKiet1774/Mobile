@@ -24,3 +24,8 @@
 
 > **📌 Lưu ý:**  
 > Các bài tập lập trình trên chỉ mang tính chất tham khảo.
+
+> Xuất file apk
+```
+flutter build apk --release
+```
